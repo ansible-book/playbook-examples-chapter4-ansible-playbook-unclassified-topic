@@ -1,0 +1,7 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+
+  tasks:
+    - debug: msg="user.name is {{ lookup('ini', 'user.name type=properties file=data/user.properties') }}"

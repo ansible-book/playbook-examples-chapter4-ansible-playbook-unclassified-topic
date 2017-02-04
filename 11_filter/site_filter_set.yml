@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    list1: [1, 2, 3, 3, 2]
+    list2: [3,4,5]
+
+  tasks:
+    - name: "unique"
+      debug: msg="{{ list1 | unique }}"
+    - name: "union"
+      debug: msg="{{ list1 | union(list2) }}"
+    - name: "difference"
+      debug: msg="{{ list1 | difference(list2) }}"
+    - name: "symmetric_difference"
+      debug: msg="{{ list1 | symmetric_difference(list2) }}"

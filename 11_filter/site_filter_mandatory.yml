@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    some_variable: "DefinedValue"
+
+  tasks:
+    #Please notice, the default setting of ansible is enforcing the variable to to defined
+    #The following undefined variable is passed, just because in the ansible.cfg in this folder is overwrite the setting by:
+    #error_on_undefined_vars = False
+    - debug: msg="{{ some_variable }}"
+    - debug: msg="{{ some_undefined_variable }}"
+    - debug: msg="{{ some_undefined_variable | mandatory }}"
+

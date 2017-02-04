@@ -1,0 +1,29 @@
+---
+- hosts: all
+  gather_facts: false
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    mongodb_parameters:
+      #optional parameter, default = "mongodb://localhost/"
+      # connection_string: "mongodb://localhost/"
+      # extra_connection_parameters: { "ssl" : True , "ssl_certfile": /etc/self_signed_certificate.pem" }
+      connection_string: "mongodb://jshi-test-02.rhev/"
+      #mandatory parameters
+      database: 'local'
+      collection: "startup_log"
+
+      #optional query  parameters
+      #we accept any parameter from the normal mongodb query.
+      # the offical documentation is here
+      # https://api.mongodb.org/python/current/api/pymongo/collection.html?highlight=find#pymongo.collection.Collection.find
+      # filter:  { "hostname": "batman" }
+      projection: { "pid": True    , "_id" : False , "hostname" : True }
+      # skip: 0
+      limit: 1
+      # sort:  [ [ "startTime" , "ASCENDING" ] , [ "age", "DESCENDING" ] ]
+
+  tasks:
+    - debug: msg="Mongo has already started with the following PID [{{ item.pid }}]"
+      with_mongodb: "{{mongodb_parameters}}"

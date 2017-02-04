@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    list1: [1, 2, 3, 4, 5, 6, 7]
+
+  tasks:
+    - name: "shuffle of {{list1}}"
+      debug: msg="{{ list1 | shuffle  }}"
+    - name: "shuffle with seed of {{[4,5,6]}}"
+      debug: msg="{{ [4,5,6] | shuffle(seed=inventory.ini) }}"

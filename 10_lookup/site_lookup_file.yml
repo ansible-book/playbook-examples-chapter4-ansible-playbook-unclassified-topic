@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+     contents: "{{ lookup('file', 'data/plain.txt') }}"
+
+  tasks:
+
+     - debug: msg="the value of data/plain.txt is {{ contents }}"

@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  remote_user: root
+
+  pre_tasks:
+    - name: pre task
+      shell: echo 'hello' in pre_tasks
+  roles:
+    - simple
+  tasks:
+    - name: Tasks in site*.yml
+      debug: msg="This is a task in site*.yml"
+  post_tasks:
+    - name: post task
+      shell: echo 'goodbye' in post_tasks

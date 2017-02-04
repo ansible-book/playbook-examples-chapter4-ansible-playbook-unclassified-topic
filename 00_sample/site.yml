@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  remote_user: root
+  roles:
+    - simple
+  tasks:
+    - name: Tasks in site.yml
+      debug: msg="This is a task in site.yml"

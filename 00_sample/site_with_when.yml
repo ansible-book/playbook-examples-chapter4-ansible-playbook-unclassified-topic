@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  remote_user: root
+
+  roles:
+    - { role: simple, when: "ansible_os_family == 'Dibian'" }
+    - role: simple
+      when: "ansible_os_family == 'Dibian'"

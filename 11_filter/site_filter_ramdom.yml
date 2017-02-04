@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    inventory_hostname: "localhost"
+
+  tasks:
+    - name: "List with random"
+      debug: msg="{{ ['a','b','c']|random }}"
+    - name: "number with random"
+      debug: msg="{{ 59 |random}} * * * * root /script/from/cron"
+    - name: "random with step"
+      debug: msg="{{ 100 |random(step=10) }}"
+    - name: "ramdom with start and step"
+      debug: msg="{{ 100 |random(2, 10) }}"
+    - name: "ramdom with start and step"
+      debug: msg="{{ 100 |random(start=2, step=10) }}"
+    # - name: "ramdom but get same btw multiple execustion"
+    #   debug: msg="{{ 59 |random(seed=inventory.ini) }} * * * * root /script/from/cron"

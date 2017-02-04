@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+    name: "Crystal"
+
+  tasks:
+     - debug: msg="{{ lookup('template', 'data/some_template.j2') }} is a value from evaluation of this template"
+
+     - name: loading a json file from a template as a string
+       debug: msg="{{ lookup('template', 'data/some_json.json.j2', convert_data=False) }} is a value from evaluation of this template"

@@ -1,0 +1,4 @@
+---
+
+- name: "Task in role demo"
+  debug: msg="This is very simplest role without any variable"

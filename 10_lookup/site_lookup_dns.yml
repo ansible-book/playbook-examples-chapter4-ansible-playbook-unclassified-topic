@@ -1,0 +1,17 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+
+  tasks:
+    - debug: msg="The IPv4 address for baidu.com. is {{ lookup('dig', 'baidu.com.')}}"
+    - debug: msg="The TXT record for baidu.com. is {{ lookup('dig', 'baidu.com.', 'qtype=TXT') }}"
+    - debug: msg="The TXT record for baidu.com. is {{ lookup('dig', 'baidu.com./TXT') }}"
+    - debug: msg="One of the MX records for 163.com. is {{ item }}"
+      with_items: "{{ lookup('dig', '163.com./MX', wantlist=True) }}"
+    #reserver query of IP
+    - debug: msg="Reverse DNS for 23.214.122.249 is {{ lookup('dig', '23.214.122.249/PTR') }}"
+    - debug: msg="Reverse DNS for 23.214.122.249 is {{ lookup('dig', '249.122.214.23.in-addr.arpa./PTR') }}"
+    - debug: msg="Reverse DNS for 23.214.122.249 is {{ lookup('dig', '249.122.214.23.in-addr.arpa.', 'qtype=PTR') }}"
+    # Specify the DNS server
+    - debug: msg="Querying 8.8.8.8 for IPv4 address for baidu.com. produces {{ lookup('dig', 'baidu.com', '@8.8.8.8') }}"

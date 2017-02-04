@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+
+  tasks:
+    - name: echo the string with omit value
+      debug: msg="dest={{item.path}} state=touch mode={{item.mode|default(omit)}}"
+      with_items:
+        - path: /tmp/foo
+        - path: /tmp/baz
+          mode: "0444"
+    - name: touch files with an optional mode
+      file: dest={{item.path}} state=touch mode={{item.mode|default(omit)}}
+      with_items:
+        - path: /tmp/foo
+        - path: /tmp/baz
+          mode: "0444"      

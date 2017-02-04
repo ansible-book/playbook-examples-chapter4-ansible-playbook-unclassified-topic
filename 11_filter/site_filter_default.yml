@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    some_variable: "DefinedValue"
+
+  tasks:
+    - debug: msg="{{ some_variable }}"
+    - debug: msg="{{ some_undefined_variable | default("DefaultValueForUndefined") }}"
+

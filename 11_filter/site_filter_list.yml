@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    list1: [1, 2, 3]
+
+  tasks:
+    - name: "Min of {{list1}}"
+      debug: msg="{{ list1 | min }}"
+    - name: "Max of {{[4,5,6]}}"
+      debug: msg="{{ [4,5,6] | max }}"      

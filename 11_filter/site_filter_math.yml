@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    myvar: 3
+
+  tasks:
+    - name: "log of {{myvar}}"
+      debug: msg="{{ myvar | log }}"
+    - name: "log(10) of {{myvar}}"
+      debug: msg="{{ myvar | log(10) }}"
+    - name: "pow(2) of {{myvar}}"
+      debug: msg="{{ myvar | pow(2) }}"
+    - name: "pow(5) of {{myvar}}"
+      debug: msg="{{ myvar | pow(5) }}"
+    - name: "root of {{myvar}}"
+      debug: msg="{{ myvar | root }}"
+    - name: "root(5) of {{myvar}}"
+      debug: msg="{{ myvar | root(5) }}"

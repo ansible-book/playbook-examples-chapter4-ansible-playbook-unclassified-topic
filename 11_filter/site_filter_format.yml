@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    filePath: /tmp/test_ansible_filter_formated
+    some_variable:
+      key1: value1
+      key2: value2
+
+  tasks:
+    #Create the output file
+    - file:
+        path: "{{filePath}}"
+        state: touch
+        mode: "u=rw,g=r,o=r"
+    #echo the formated variables to file
+    - name: output the formated variable to {{filePath}}
+      blockinfile:
+        dest: "{{filePath}}"
+        block: |
+          {{ some_variable | to_json }}
+          ------------------------------
+          {{ some_variable | to_yaml }}
+          ------------------------------
+          {{ some_variable | to_nice_json }}
+          ------------------------------
+          {{ some_variable | to_nice_yaml }}
+    #Show the content of output file
+    - shell: cat {{filePath}}
+      register: result
+
+    - debug: msg="{{result}}"
+
