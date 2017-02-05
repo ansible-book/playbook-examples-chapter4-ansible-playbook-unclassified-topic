@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    name: "John"
+    some_string_value: "Test"
+    some_book_value: True
+
+  tasks:
+
+    - name: "true or false take different value"
+      debug: msg="{{ (name == "John") | ternary('Mr','Ms') }}"
+    - debug: msg=test
+      when: some_string_value | bool
+    - debug: msg=test
+      when: some_book_value | bool

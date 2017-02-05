@@ -9,6 +9,7 @@
       key1: value1
       key2: value2
 
+
   tasks:
     #Create the output file
     - file:
@@ -30,6 +31,4 @@
     #Show the content of output file
     - shell: cat {{filePath}}
       register: result
-
     - debug: msg="{{result}}"
-

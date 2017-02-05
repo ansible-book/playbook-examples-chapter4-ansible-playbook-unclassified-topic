@@ -10,4 +10,6 @@
     - name: "Min of {{list1}}"
       debug: msg="{{ list1 | min }}"
     - name: "Max of {{[4,5,6]}}"
-      debug: msg="{{ [4,5,6] | max }}"      
+      debug: msg="{{ [4,5,6] | max }}"
+    - name: "join {{list1}}"
+      debug: msg="{{ list1 | join(",") }}"

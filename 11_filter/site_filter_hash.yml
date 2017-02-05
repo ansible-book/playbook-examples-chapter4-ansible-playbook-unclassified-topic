@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_password: "mytestpassword"
+
+  tasks:
+    - name: "Get sha1 hash of string {{ my_password }}"
+      debug: msg="{{ my_password |hash('sha1') }}"
+    - name: "Get md5 hash of string {{ my_password }}"
+      debug: msg="{{ my_password |hash('md5') }}"
+    - name: "Get checksum of string {{ my_password }}"
+      debug: msg="{{ my_password |checksum }}"
+    - name: "Get blowfish hash of string {{ my_password }}"
+      debug: msg="{{ my_password |hash('blowfish') }}"
+    - name: "Get sha512 password hash (random salt) of string {{ my_password }}"
+      debug: msg="{{ my_password|password_hash('sha512') }}"
+    - name: "Get  get a sha256 password hash with a specific salt of string {{ my_password }}"
+      debug: msg="{{ my_password |password_hash('sha256', 'mysecretsalt') }}"

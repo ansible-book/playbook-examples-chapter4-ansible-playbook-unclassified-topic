@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_comment: "This is the test comment"
+  tasks:
+    - name: "Simple comment"
+      debug: msg="{{ my_comment | comment }}"
+    - name: "C style comment"
+      debug: msg="{{ my_comment | comment('c') }}"
+    - name: "cblock style comment"
+      debug: msg="{{ my_comment | comment('cblock') }}"
+    - name: "erlang style comment"
+      debug: msg="{{ my_comment | comment('erlang') }}"
+    - name: "xml style comment"
+      debug: msg="{{ my_comment | comment('xml') }}"
+    - name: "customize style comment"
+      debug: msg="{{ my_comment | comment('plain', prefix='#######\n#', postfix='#\n#######\n###\n#') }}"
+    # - name: comment with ansible variables
+    #   debug: msg="{{ ansible_managed | comment }}"

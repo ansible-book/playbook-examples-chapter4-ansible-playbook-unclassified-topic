@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_valid_ip: "192.168.0.166"
+    my_invalid_ip: "192.168.0.266"
+    my_valid_ipv6: "fe80::dcfd:1e54:728d:a99e"
+
+  tasks:
+    #Need to install python package netaddr to support ipaddr filter
+    #pip install netaddr
+    - name: "Check {{ my_valid_ip }} is an valid ip"
+      debug: msg="{{ my_valid_ip | ipaddr }}"
+    - name: "Check {{ my_invalid_ip  }} is an valid ip"
+      debug: msg="{{ my_invalid_ip | ipaddr }}"
+    - name: "Check {{ my_valid_ip }} is an valid ipv4 addr"
+      debug: msg="{{ my_valid_ip | ipv4 }}"
+    - name: "Check {{ my_valid_ipv6 }} is an valid ipv6 addr"
+      debug: msg="{{ my_valid_ipv6 | ipv6 }}"
+    - name: "Check {{ '192.0.2.1/24' | ipaddr('address') }} is an valid ip"
+      debug: msg="{{ '192.0.2.1/24' | ipaddr('address') }}"

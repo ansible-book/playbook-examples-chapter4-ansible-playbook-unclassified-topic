@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_string_var: "This is the test vars"
+    my_number_var: 25
+  tasks:
+    - name: "Type debug of string"
+      debug: msg="{{ "test" | type_debug }}"
+    - name: "Type debug of number"
+      debug: msg="{{ 25 | type_debug }}"

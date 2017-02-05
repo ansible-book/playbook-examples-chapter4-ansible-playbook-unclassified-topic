@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_object:
+      x: 42
+      y: 31
+    a:
+      x:
+        y:
+          z: "testvalue"
+  tasks:
+    - name: "number indexes of map"
+      debug: msg="{{ [0,2]|map('extract', ['x','y','z'])|list }}"
+    - name: "string indexes of map"
+      debug: msg="{{ ['x','y']|map('extract', my_object)|list }}"
+    - name: "indexes from the group x in the inventory"
+      debug: msg="{{ groups['cluster1']|map('extract', hostvars, 'inventory_hostname')|list }}"
+    - name: "combine with multiple element"
+      debug: msg="{{ ['x']|map('extract', a, ['y', 'z'])|list }}"

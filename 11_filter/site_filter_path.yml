@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    linux_path: "/etc/asdf/foo.txt"
+    linux_user_path: "~/data/my_test/file.txt"
+    window_path: "C:\\window\\myfile.docx"
+  tasks:
+    #Path for linux system
+    - name: "Get the filename in linux file path {{ linux_path }}"
+      debug: msg="{{linux_path | basename}}"
+    - name: "Get the dirname in linux file path {{ linux_path }}"
+      debug: msg="{{linux_path | dirname}}"
+    - name: "expanduser of {{linux_user_path}}"
+      debug: msg="{{ linux_user_path | expanduser }}"
+    - name: "realpath of {{ link_to_ansible_cfg }}"
+      debug: msg="{{ 'link_to_ansible_cfg' | realpath }}"
+    # - name: "realpath of {{ link_to_ansible_cfg }}"
+    #   debug: msg="{{ 'link_to_ansible_cfg' | realpath('/home') }}"
+    - name: "Get the split name of file"
+      debug: msg="{{ 'nginx.conf' | splitext}}"
+    #Path for window system
+    - name: "Get the filename in window file path {{ window_path }}"
+      debug: msg="{{window_path | win_basename}}"
+    - name: "Get the dirname in window file path {{ window_path }}"
+      debug: msg="{{window_path | win_dirname}}"
+    - name: "Get the split window file path {{ window_path }}"
+      debug: msg="{{window_path | win_splitdrive}}"
+    - name: "Get the split window file path {{ window_path }}"
+      debug: msg="{{window_path | win_splitdrive|first}}"
+    - name: "Get the split window file path {{ window_path }}"
+      debug: msg="{{window_path | win_splitdrive|last}}"

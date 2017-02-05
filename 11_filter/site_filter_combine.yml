@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    list1:
+      key1: valueA1
+      key2: valueA2
+      key3: valueA3
+      key4: valueA4
+    list2:
+      key1: valueB1
+      key2: valueB2
+      key3: valueB3
+    list3:
+      key1: valueC1
+      key2: valueC2
+    list4:
+      key1: valueD1
+
+  tasks:
+    - name: "combine"
+      debug: msg="{{ {'a':1, 'b':2}|combine({'b':3}) }}"
+    - name: "combine with recursive"
+      debug: msg="{{ {'a':{'foo':1, 'bar':2}, 'b':2}|combine({'a':{'bar':3, 'baz':4}}, recursive=True) }}"
+    - name: "combine with multiple element"
+      debug: msg="{{ list1 |combine(list2, list3, list4) }}"

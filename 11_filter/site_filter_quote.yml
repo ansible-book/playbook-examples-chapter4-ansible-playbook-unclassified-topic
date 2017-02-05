@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_test_string: "This is the test string"
+
+  tasks:
+
+    - name: "quote {{ my_test_string  }}"
+      debug: msg="echo {{ my_test_string | quote }}"

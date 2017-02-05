@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_comment: "This is the test comment"
+    my_encoding_comment: "VGhpcyBpcyB0aGUgdGVzdCBjb21tZW50"
+
+  tasks:
+    - name: "Get the base64 encoding string of {{ my_comment }}"
+      debug: msg="{{ my_comment | b64encode }}"
+    - name: "Get the base64 decoding string of {{ my_encoding_comment }}"
+      debug: msg="{{ my_encoding_comment | b64decode }}"
+    - name: "Get the uuid of {{ my_comment }}"
+      debug: msg="{{ my_comment| to_uuid }}"

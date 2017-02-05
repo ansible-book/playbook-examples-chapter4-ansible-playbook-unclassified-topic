@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    my_comment: "This is the test comment"
+  tasks:
+    - name: 'convert "ansible" to "able"'
+      debug: msg="{{ 'ansible' | regex_replace('^a.*i(.*)$', 'a\\1') }}"
+    - name: 'convert "foobar" to "bar"'
+      debug: msg="{{ 'foobar' | regex_replace('^f.*o(.*)$', '\\1') }}"
+    - name: 'convert "localhost:80" to "localhost, 80" using named groups'
+      debug: msg="{{ 'localhost:80' | regex_replace('^(?P<host>.+):(?P<port>\\d+)$', '\\g<host>, \\g<port>') }}"
+    - name: "# convert '^f.*o(.*)$'"
+      debug: msg="{{ '^f.*o(.*)$' | regex_escape() }}"
