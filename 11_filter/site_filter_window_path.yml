@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: false
+
+  vars:
+    window_path: "C:\\window\\subfolder\\myfile.docx"
+  tasks:
+    #Path for window system
+    - name: "Get the filename in window file path {{ window_path }}"
+      debug: msg="{{window_path | win_basename}}"
+    - name: "Get the dirname in window file path {{ window_path }}"
+      debug: msg="{{window_path | win_dirname}}"
+    - name: "Get the split window file path {{ window_path }}"
+      debug: msg="{{window_path | win_splitdrive}}"
+    - name: "Get the split window file path {{ window_path }}"
+      debug: msg="{{window_path | win_splitdrive|first}}"
+    - name: "Get the split window file path {{ window_path }}"
+      debug: msg="{{window_path | win_splitdrive|last}}"

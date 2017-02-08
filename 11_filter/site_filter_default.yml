@@ -8,5 +8,5 @@
 
   tasks:
     - debug: msg="{{ some_variable }}"
-    - debug: msg="{{ some_undefined_variable | default("DefaultValueForUndefined") }}"
+    - debug: msg="{{ some_undefined_variable | default("Default") }}"
 

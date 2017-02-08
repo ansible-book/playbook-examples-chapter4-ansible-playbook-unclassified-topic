@@ -6,7 +6,6 @@
   vars:
     linux_path: "/etc/asdf/foo.txt"
     linux_user_path: "~/data/my_test/file.txt"
-    window_path: "C:\\window\\subfolder\\myfile.docx"
   tasks:
     #Path for linux system
     - name: "Get the filename in linux file path {{ linux_path }}"
@@ -21,14 +20,3 @@
       debug: msg="{{ 'link_to_ansible_cfg' | relpath('/home') }}"
     - name: "Get the split name of file"
       debug: msg="{{ 'nginx.conf' | splitext}}"
-    #Path for window system
-    - name: "Get the filename in window file path {{ window_path }}"
-      debug: msg="{{window_path | win_basename}}"
-    - name: "Get the dirname in window file path {{ window_path }}"
-      debug: msg="{{window_path | win_dirname}}"
-    - name: "Get the split window file path {{ window_path }}"
-      debug: msg="{{window_path | win_splitdrive}}"
-    - name: "Get the split window file path {{ window_path }}"
-      debug: msg="{{window_path | win_splitdrive|first}}"
-    - name: "Get the split window file path {{ window_path }}"
-      debug: msg="{{window_path | win_splitdrive|last}}"
