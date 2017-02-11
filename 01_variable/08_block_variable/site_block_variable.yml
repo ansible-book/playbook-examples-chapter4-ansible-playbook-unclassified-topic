@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  remote_user: root
+
+  tasks:
+   - block:
+      - debug: msg="The service of this block is {{service}}"
+      - debug: msg="The status of this block is {{status}}"
+       # - yum: name={{ item.package }} state=installed
+       # - service: name={{ item.service }} state=started enabled=True
+     vars:
+       service: httpd
+       status: started

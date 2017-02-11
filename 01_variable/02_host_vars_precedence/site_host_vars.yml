@@ -1,0 +1,8 @@
+---
+
+- hosts: localhost
+  remote_user: root
+
+  tasks:
+    - name: Echo the group vars
+      debug: msg="{{ntp_server}}"

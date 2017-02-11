@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: no
+
+  vars:
+    test: "camelot"
+
+  vars_prompt:
+    - name: "name"
+      prompt: "what is your name?"
+    - name: "favcolor"
+      prompt: "what is your favorite color?"
+  tasks:
+    - debug: msg="Hello {{name}}, your favorite color is {{favcolor}}"

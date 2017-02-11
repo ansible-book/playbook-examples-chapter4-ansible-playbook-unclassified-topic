@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+
+  # vars:
+  #   name: "test name"
+
+  tasks:
+  - name: test local and remote 
+    template: src=data/text_template.j2 dest=/tmp/test

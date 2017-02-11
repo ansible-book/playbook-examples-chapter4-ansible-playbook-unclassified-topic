@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  remote_user: root
+
+  tasks:
+   - debug: msg="{{service}} is {{status}}"
+     vars:
+       service: httpd
+       status: running

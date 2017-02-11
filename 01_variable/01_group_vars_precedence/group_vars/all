@@ -1,0 +1,2 @@
+---
+ntp_server: playbook_group_all_vars.ntp.com
